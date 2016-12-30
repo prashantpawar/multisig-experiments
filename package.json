@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Prashant Singh Pawar",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bitcoinjs-lib": "^2.3.0"
+  },
+  "devDependencies": {
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
 }

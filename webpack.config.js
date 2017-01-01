@@ -8,6 +8,9 @@ module.exports = {
     inline: true,
     hot: false
   },
+  resolve: {
+    extensions: ['.es6.js']
+  },
   module: {
     loaders: [
       {

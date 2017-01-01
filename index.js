@@ -1,9 +1,13 @@
-var bitcoin = require('bitcoinjs-lib');
-var bigi = require('bigi');
+const vorpal = require('vorpal')();
 
-var hash = bitcoin.crypto.sha256('hello world');
-var d = bigi.fromBuffer(hash);
+const generate = require('./src/generate.js');
 
-var keyPair = new bitcoin.ECPair(d);
-var address = keyPair.getAddress();
-console.log('Generated Address', address);
+vorpal
+  .command('contract [command...]')
+  .option('-c, --create')
+  .action(function (args, callback) {
+    this.log(generate());
+    callback();
+  });
+
+vorpal.show();

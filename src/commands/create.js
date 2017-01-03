@@ -7,10 +7,17 @@ const commands = {
   'createKey': require('./createKey.js')
 };
 
-module.exports = function (args, callback) {
-  Object.keys(args.options).map(function (commandName) {
-    let commandArgs = args.options[commandName];
-    vorpal.log(commands[commandName].call(vorpal, commandArgs, config));
-  });
-  callback();
+module.exports = {
+  name: 'create',
+  handlerFn: function (args, callback) {
+    Object.keys(args.options).map(function (commandName) {
+      let commandArgs = args.options[commandName];
+      vorpal.log(commands[commandName].call(vorpal, commandArgs, config));
+    });
+    callback();
+  },
+  options: [
+    '-c, --createKey [hash_string]',
+    '-i, --importKey <key>'
+  ]
 }

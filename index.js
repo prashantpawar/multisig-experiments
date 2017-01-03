@@ -10,7 +10,6 @@ vorpal
   .option('-c, --createKey [hash_string]')
   .option('-i, --importKey <key>')
   .action(function (args, callback) {
-    vorpal.log(args);
     Object.keys(args.options).map(function (commandName) {
       let commandArgs = args.options[commandName];
       vorpal.log(commands[commandName].call(vorpal, commandArgs));

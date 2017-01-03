@@ -1,8 +1,7 @@
 const bitcoin = require('bitcoinjs-lib');
 const bigi = require('bigi');
-const config = require('./config.js');
 
-module.exports = function generateKey (hash_string) {
+module.exports = function generateKey (hash_string, config) {
   let keyPair;
   if(hash_string === true) {
     keyPair = bitcoin.ECPair.makeRandom(config); 

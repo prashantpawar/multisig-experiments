@@ -1,20 +1,17 @@
+/**
+ * contract create --counterparty 0x00 --brehon-1 0x00 --brehon-2 0x00 --brehon-3 0x00
+ * Output: Contract address/Raw TX 
+ * 
+ * contract info <contract_address>
+ * Output: Balance, info
+ * */
 const vorpal = require('vorpal')();
-
-const commands = {
-  'importKey': require('./src/importKey.js'),
-  'createKey': require('./src/createKey.js')
-};
+const createCommand = require('./src/commands/create.js');
 
 vorpal
-  .command('contract [command...]')
+  .command('contract create')
   .option('-c, --createKey [hash_string]')
   .option('-i, --importKey <key>')
-  .action(function (args, callback) {
-    Object.keys(args.options).map(function (commandName) {
-      let commandArgs = args.options[commandName];
-      vorpal.log(commands[commandName].call(vorpal, commandArgs));
-    });
-    callback();
-  });
+  .action(createCommand);
 
 vorpal.show();

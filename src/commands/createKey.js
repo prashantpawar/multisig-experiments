@@ -1,17 +1,14 @@
 const bitcoin = require('bitcoinjs-lib');
 const bigi = require('bigi');
 
-module.exports = function generateKey (hash_string) {
-  const testnet = bitcoin.networks.testnet;
+module.exports = function createKey (hash_string, config) {
   let keyPair;
   if(hash_string === true) {
-    keyPair = bitcoin.ECPair.makeRandom({
-      network: testnet
-    }); 
+    keyPair = bitcoin.ECPair.makeRandom(config); 
   } else {
     let hash = bitcoin.crypto.sha256(hash_string);
     let d = bigi.fromBuffer(hash);
-    keyPair = new bitcoin.ECPair(d);
+    keyPair = new bitcoin.ECPair(d, null, config);
   }
 
   let address = keyPair.getAddress();

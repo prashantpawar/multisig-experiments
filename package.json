@@ -15,6 +15,7 @@
     "buffer": "^5.0.2",
     "cb-http-client": "^0.2.3",
     "ecurve": "^1.0.5",
+    "ramda": "^0.23.0",
     "vorpal": "^1.11.4"
   },
   "devDependencies": {

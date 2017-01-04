@@ -1,8 +1,9 @@
+const R = require('ramda');
 const vorpal = require('vorpal')();
 const bitcoin = require('bitcoinjs-lib');
 const config = require('./../config.js');
 
-const commands = {
+const options = {
   'importKey': require('./importKey.js'),
   'createKey': require('./createKey.js')
 };
@@ -10,10 +11,9 @@ const commands = {
 module.exports = {
   name: 'create',
   handlerFn: function (args, callback) {
-    Object.keys(args.options).map(function (commandName) {
-      let commandArgs = args.options[commandName];
-      vorpal.log(commands[commandName].call(vorpal, commandArgs, config));
-    });
+    R.mapObjIndexed(function (optionArg, optionName) {
+			vorpal.log(options[optionName].call(vorpal, optionArg, config));
+    }, args.options);
     callback();
   },
   options: [

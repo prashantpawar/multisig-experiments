@@ -5,17 +5,20 @@
  * contract info <contract_address>
  * Output: Balance, info
  * */
+const R = require('ramda');
 const vorpal = require('vorpal')();
 const contractCommands = require('./src/commands/commands.js');
 const utils = require('./src/utils.js');
 
 const mainCommand = 'contract';
 
+const defaultToEmptyArray = R.defaultTo([]);
+
 contractCommands.map(function registerCommands(command) {
   const vc = vorpal.command(utils.prefixer(mainCommand, command.name));
-  command.options.map(function (option) {
+  R.map(function (option) {
     vc.option(option);
-  });
+  }, defaultToEmptyArray(command.options));
   vc.action(command.handlerFn);
   return vc;
 });

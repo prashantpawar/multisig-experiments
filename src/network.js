@@ -1,5 +1,19 @@
 const bitcoin = require('bitcoinjs-lib');
 const Blockchain = require('cb-http-client')
 const blocktrail = require('blocktrail-sdk');
-client = blocktrail.BlocktrailSDK({apiKey: "879dbfa31a666f99d3eced9026842c82ee18a60c", apiSecret: "MY_APISECRET", network: "BTC", testnet: true});
 
+const config = require('./config.js');
+const client = blocktrail.BlocktrailSDK({
+  apiKey: config.BLOCKTRAIL_API_KEY,
+  network: "BTC",
+  testnet: config.network === bitcoin.networks.testnet
+});
+
+
+function getBalance(address, callback) {
+  return client.address(address, callback);
+}
+
+module.exports = {
+  getBalance: getBalance
+}

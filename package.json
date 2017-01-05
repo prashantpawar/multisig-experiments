@@ -5,9 +5,11 @@
   "author": "Prashant Singh Pawar",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "start": "babel-node index.js"
   },
   "dependencies": {
+    "babel-polyfill": "^6.20.0",
     "bigi": "^1.4.2",
     "bitcoinjs-lib": "^2.3.0",
     "blocktrail-sdk": "^3.0.3",
@@ -19,6 +21,7 @@
     "vorpal": "^1.11.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-latest": "^6.16.0",

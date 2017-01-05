@@ -1,4 +1,2 @@
-# Bitcoin Mutlisig Experiments
-
-[![Build
+# Bitcoin Multisig Experiments [![Build
 Status](https://travis-ci.org/prashantpawar/multisig-experiments.svg?branch=master)](https://travis-ci.org/prashantpawar/multisig-experiments)

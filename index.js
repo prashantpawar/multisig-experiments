@@ -5,10 +5,11 @@
  * contract info <contract_address>
  * Output: Balance, info
  * */
-const R = require('ramda');
-const vorpal = require('vorpal')();
-const contractCommands = require('./src/commands/commands.js');
+import R from 'ramda';
+import vorpalModule from 'vorpal';
+import { contractCommands } from './src/commands/commands.js';
 const utils = require('./src/utils.js');
+const vorpal = vorpalModule();
 
 const mainCommand = 'contract';
 

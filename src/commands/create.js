@@ -1,25 +1,43 @@
-const R = require('ramda');
-const bitcoin = require('bitcoinjs-lib');
-const config = require('./../config.js');
+import R from 'ramda';
+import bitcoin from 'bitcoinjs-lib';
+import config from './../config.js';
+import Command from './command.js';
 
-const options = {
+let _optionClasses = {
   'importKey': require('./importKey.js'),
   'createKey': require('./createKey.js')
 };
 
-module.exports = {
-  name: 'create',
-  handlerFn: function (args, callback) {
+export default class CreateCommand extends Command {
+  constructor () {
+    super();
+    this.name = 'create';
+    this.options = [
+      '-c, --createKey [hash_string]',
+      '-i, --importKey <key>'
+    ];
+  }
+
+  static get optionClasses() {
+      return _optionClasses;
+  }
+
+  static set optionClasses(value) {
+    _optionClasses = value;
+  }
+
+  handlerFn(args, callback) {
     const callOption = (optionArg, optionName) => {
-      return options[optionName].call(this, optionArg, config);
+      return _optionClasses[optionName].call(this, optionArg, config);
     };
-    const processOptions = R.compose(R.join(''), R.values, R.mapObjIndexed(callOption));
+    const processOptions = R.compose(
+      R.join(''),
+      R.values,
+      R.mapObjIndexed(callOption)
+    );
     const output = processOptions(args.options);
     callback();
     return output;
-  },
-  options: [
-    '-c, --createKey [hash_string]',
-    '-i, --importKey <key>'
-  ]
+  }
+
 }

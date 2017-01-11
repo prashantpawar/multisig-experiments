@@ -36,8 +36,7 @@ export default class CreateCommand extends Command {
       R.mapObjIndexed(callOption)
     );
     const output = processOptions(args.options);
-    callback();
-    return output;
+    callback(output);
   }
 
 }

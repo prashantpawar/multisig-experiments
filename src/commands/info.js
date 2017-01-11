@@ -1,16 +1,22 @@
-const vorpal = require('vorpal')();
-const network = require('./../network.js');
+import { getBalance } from '../network.js';
+import Command from './command.js';
 
-module.exports = {
-  name: 'info <address>',
-  handlerFn: function (args, callback) {
-    network.getBalance(args.address, function (err, address) {
+export default class InfoCommand extends Command {
+  constructor () {
+    super();
+    this.name = 'info <address>';
+    this.options = [];
+  }
+
+  handlerFn (args, callback) {
+    let output = "";
+    getBalance(args.address, function (err, address) {
       if (err) {
-        vorpal.log(err);
+        output += err;
       } else {
-        vorpal.log('Balance: ' + address.balance);
+        output += 'Balance: ' + address.balance;
       }
-      callback();
+      callback(output);
     });
   }
-};
+}

@@ -16,7 +16,10 @@ const mainCommand = 'contract';
 const defaultToEmptyArray = R.defaultTo([]);
 const printOutput = (handlerFn) => {
   return (args, callback) => {
-    vorpal.log(handlerFn(args, callback));
+    handlerFn(args, function (output) {
+      vorpal.log(output);
+      callback();
+    });
   }
 };
 

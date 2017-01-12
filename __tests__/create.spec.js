@@ -11,7 +11,7 @@ describe('command create', () => {
     expect(createCommand.name).toBeDefined();
   });
 
-  it('should specify a options', () => {
+  it('should specify options', () => {
     expect(createCommand.options).toBeDefined();
   });
 
@@ -36,6 +36,12 @@ describe('command create', () => {
           'option-1': true
         }
       };
+      const option1Class = jest.fn();
+      CreateCommand.optionClasses = {
+        'option-1': option1Class
+      };
+      createCommand.handlerFn(args, jest.fn());
+      expect(option1Class).toHaveBeenCalled();
     });
   });
 });

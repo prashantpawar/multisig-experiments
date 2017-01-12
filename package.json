@@ -7,11 +7,12 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "start": "babel-node index.js",
-    "test" : "jest"
+    "test": "jest"
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
     "bigi": "^1.4.2",
+    "bip38": "^2.0.0",
     "bitcoinjs-lib": "^2.3.0",
     "blocktrail-sdk": "^3.0.3",
     "bs58": "^4.0.0",

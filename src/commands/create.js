@@ -4,8 +4,7 @@ import config from './../config.js';
 import Command from './command.js';
 
 let _optionClasses = {
-  'importKey': require('./importKey.js'),
-  'createKey': require('./createKey.js')
+  'generate': require('./generateHDWallet.js')
 };
 
 export default class CreateCommand extends Command {
@@ -13,8 +12,7 @@ export default class CreateCommand extends Command {
     super();
     this.name = 'create';
     this.options = [
-      '-c, --createKey [hash_string]',
-      '-i, --importKey <key>'
+      '-g, --generate'
     ];
   }
 
@@ -38,5 +36,4 @@ export default class CreateCommand extends Command {
     const output = processOptions(args.options);
     callback(output);
   }
-
 }
